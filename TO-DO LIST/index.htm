@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TO-DO LIST</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="head">
+            <h2 class="title">TO DO LIST APPLICATION</h2>
+    </div>
+    <div>
+    <h2>TASKS :</h2>
+    <ul id="todolist">
+
+    </ul>
+    <div>
+    <input type="text" id="inp" value="">
+    <button id="add" onclick="todoList()">ADD TASK</button>
+    </div>
+    <div>
+        <h2>COMPLETED TASKS :</h2>
+        <ul id="completed">
+
+        </ul>
+    
+        
+    </div>
+</div>
+
+
+
+    
+</body>
+<script>
+    let store = new Array();
+     let input =document.getElementById('inp')
+    let list=document.getElementById('todolist')
+    function todoList(){
+        // let input =document.getElementById('inp')
+        // let list=document.getElementById('todolist')
+        if(input.value!=""){
+             store.push(input.value)
+        // store.push(input.value)
+        let index=store.length-1;
+        list.innerHTML+=`<li id="${index}"><button onclick="complete(${index})">${input.value}</button></li><br>`  //can also store input value
+        input.value="" 
+        }
+        else{
+            alert("Task Field Should Not Be Blank")
+        }    
+    }
+    function complete(id){
+        let complist=document.getElementById("completed")
+        complist.innerHTML+=`<li>${store[id]}</li>`
+
+        let item=document.getElementById(id)
+        item.remove()
+    }
+</script>
+</html>
