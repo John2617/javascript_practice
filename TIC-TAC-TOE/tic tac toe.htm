@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .board{
+        /* makes the first division tag in a grid format */
+        display: grid;   
+        /* creates 3*3 columns with 100px of size */
+        grid-template-columns:repeat(3,100px);
+        grid-template-rows: repeat(3,100px);
+        gap: 5px;
+        margin: 20px auto;
+        width: max-content;
+    }
+    .cell{
+        border: 2px solid black;
+        font-size: 20px;
+        line-height: 100px;
+        text-align: center;
+        cursor: pointer;
+        user-select: none;
+        width: 100px;
+        height: 100px;
+    }
+
+</style>
+<body>
+    <center><h1>TIC TAC TOE</h1></center>
+    <div class="board" id="gameBoard">
+
+
+
+    </div>
+   <center> <button   onclick="restart()">restart</button></center>
+</body>
+<script>
+     
+    const gameBoard=document.getElementById('gameBoard') // adding the gameboard division in a variable
+    let currentPlayer = "X"
+    for(i=0;i<9;i++){
+        const cell = document.createElement('div')  // creating seaparte divisions 
+        cell.classList.add("cell") //adding class names for each division
+        cell.addEventListener("click",function(){   // adding the event for clicking a division
+            cell.innerText+=currentPlayer  //when clicks it..shos as "x"
+            cell.style.pointerEvents="none" // after clicked a certain division..we cannot retouch..so i used pointerevents as none.
+            checkwinner();
+            currentPlayer= currentPlayer==="X" ? "O" :"X"
+        })
+        gameBoard.append(cell)  //appending these in the gameboard division
+    }
+        function restart(){
+                let cells=document.querySelectorAll('.cell')
+                cells.forEach(cell=>{
+                    cell.innerText= "";
+                    cell.style.pointerEvents="auto";
+                    
+                })
+        currentPlayer="X"
+        }
+        function checkwinner(){
+            const cell=document.querySelectorAll('.cell')
+            if(
+                cell[0].innerText===cell[1].innerText && cell[1].innerText===cell[2].innerText  && cell[0].innerText!=""
+            ){
+                setTimeout(()=>{
+                    alert(`Player ${cell[0].innerText} is WON`)
+                },1000)
+            }
+            if(
+                cell[3].innerText===cell[4].innerText && cell[4].innerText===cell[5].innerText  && cell[3].innerText!=""
+            ){
+                setTimeout(()=>{
+                    alert(`Player ${cell[3].innerText} is WON`)
+                },1000)
+            }
+            if(
+                cell[6].innerText===cell[7].innerText && cell[7].innerText===cell[8].innerText  && cell[6].innerText!=""
+            ){
+                setTimeout(()=>{
+                    alert(`Player ${cell[6].innerText} is WON`)
+                },1000)
+            }
+            if(
+                cell[0].innerText===cell[3].innerText && cell[3].innerText===cell[6].innerText  && cell[0].innerText!=""
+            ){
+                setTimeout(()=>{
+                    alert(`Player ${cell[0].innerText} is WON`)
+                },1000)
+            }
+            if(
+                cell[1].innerText===cell[4].innerText && cell[4].innerText===cell[7].innerText  && cell[1].innerText!=""
+            ){
+                setTimeout(()=>{
+                    alert(`Player ${cell[1].innerText} is WON`)
+                },1000)
+            }
+            if(
+                cell[2].innerText===cell[5].innerText && cell[5].innerText===cell[8].innerText  && cell[2].innerText!=""
+            ){
+                setTimeout(()=>{
+                    alert(`Player ${cell[2].innerText} is WON`)
+                },1000)
+            }
+            if(
+                cell[2].innerText===cell[4].innerText && cell[4].innerText===cell[6].innerText  && cell[2].innerText!=""
+            ){
+                setTimeout(()=>{
+                    alert(`Player ${cell[2].innerText} is WON`)
+                },1000)
+            }
+            if(
+                cell[0].innerText===cell[4].innerText && cell[4].innerText===cell[8].innerText && cell[0].innerText!=""
+            ){
+                setTimeout(()=>{
+                    alert(`Player ${cell[0].innerText} is WON`)
+                },1000)
+            }
+             if (
+              cell[0].innerText !== "" &&
+              cell[1].innerText !== "" &&
+              cell[2].innerText !== "" &&
+              cell[3].innerText !== "" &&
+              cell[4].innerText !== "" &&
+              cell[5].innerText !== "" &&
+              cell[6].innerText !== "" &&
+              cell[7].innerText !== "" &&
+              cell[8].innerText !== ""
+      ) {
+        setTimeout(() => alert("It's a draw!"), 1000);
+      }
+           
+        }
+       
+        
+        
+        
+        
+        
+        
+    
+</script>
+</html>
